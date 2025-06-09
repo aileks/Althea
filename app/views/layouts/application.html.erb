@@ -3,18 +3,12 @@
   <head>
     <title><%= content_for(:title) || "Althea" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,31 +17,50 @@
       rel="stylesheet"
     >
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%# Correctly links to your compiled Tailwind CSS file in app/assets/builds/ %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
-      <nav>
-        <% if user_signed_in? %>
-          <p>Welcome,
-            <%= current_user.email %></p>
-          <%= link_to "Edit Profile", edit_user_registration_path %>
-          <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "Sign Up", new_user_registration_path %>
-          <%= link_to "Log In", new_user_session_path %>
-        <% end %>
+  <body class="font-sans antialiased bg-gray-50">
+    <header class="bg-gray-100 shadow-sm">
+      <nav class="container mx-auto px-5 py-4 flex justify-between items-center">
+        <div>
+           <%= link_to "Althea", root_path, class: "text-xl font-bold" %>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <% if user_signed_in? %>
+              <span class=" text-gray-600">Welcome, <%= current_user.username %></span>
+
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "link-primary" %>
+
+              <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn-destructive" %>
+            <% else %>
+              <%= link_to "Log In", new_user_session_path, class: "font-medium text-gray-700 hover:text-accent-600 duration-200" %>
+
+              <%= link_to "Sign Up", new_user_registration_path, class: "font-medium btn-primary" %>
+            <% end %>
+        </div>
       </nav>
     </header>
 
-    <main class="container mx-auto mt-28 px-5 flex">
+    <div>
+        <% if notice %>
+          <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+            <p><%= notice %></p>
+          </div>
+        <% end %>
+        <% if alert %>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <p><%= alert %></p>
+            </div>
+        <% end %>
+    </div>
+
+    <main class="font-sans text-gray-800">
       <%= yield %>
     </main>
 
-    <div class="notice"><%= notice %></div>
-    <div class="alert"><%= alert %></div>
   </body>
 </html>
