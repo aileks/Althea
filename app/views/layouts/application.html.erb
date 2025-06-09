@@ -23,8 +23,25 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <% if user_signed_in? %>
+          <p>Welcome,
+            <%= current_user.email %></p>
+          <%= link_to "Edit Profile", edit_user_registration_path %>
+          <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Sign Up", new_user_registration_path %>
+          <%= link_to "Log In", new_user_session_path %>
+        <% end %>
+      </nav>
+    </header>
+
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
+
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
   </body>
 </html>
