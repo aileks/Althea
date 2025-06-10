@@ -1,26 +1,27 @@
-<div class="md:mt-24 grid place-items-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="md:mt-24 grid place-items-center py-12 px-4 sm:px-6 lg:px-8 relative">
 
   <div class="w-full max-w-md space-y-8">
-    <h2 class="text-center underline text-3xl font-bold">
-      Welcome Back
+    <h2 class="text-center text-3xl font-bold text-primary-700 embossed-text relative">
+      <span class="relative z-10">Welcome Back</span>
+      <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary-400 to-accent-500 rounded-full"></div>
     </h2>
 
-    <div class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
+    <div class="card-raised py-8 px-4 sm:px-10 relative">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
         <div class="error-text mb-4">
           <%= render "devise/shared/error_messages", resource: resource %>
         </div>
 
         <div>
-          <%= f.label :email, class: "block font-medium text-neutral-700" %>
-          <div class="mt-1">
+          <%= f.label :email, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <div class="relative">
             <%= f.email_field :email, placeholder: "you@example.com", autofocus: true, autocomplete: "email", class: "form-input w-full" %>
           </div>
         </div>
 
         <div>
-          <%= f.label :password, class: "block font-medium text-neutral-700" %>
-          <div class="mt-1">
+          <%= f.label :password, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <div class="relative">
             <%= f.password_field :password, placeholder: "••••••••", autocomplete: "current-password", class: "form-input w-full" %>
           </div>
         </div>
@@ -28,28 +29,28 @@
         <% if devise_mapping.rememberable? %>
           <div class="flex items-center">
             <%= f.check_box :remember_me, class: "h-4 w-4 text-primary-600 focus:ring-primary-500 border-neutral-300 rounded" %>
-            <%= f.label :remember_me, class: "ml-2 block text-sm text-neutral-700" %>
+            <%= f.label :remember_me, class: "ml-2 block text-sm text-neutral-700 embossed-text" %>
           </div>
         <% end %>
 
         <div>
-          <%= f.submit "Log in", class: "w-full flex justify-center py-2 px-4 btn-primary" %>
+          <%= f.submit "Log in", class: "w-full flex justify-center btn-primary text-lg" %>
         </div>
       <% end %>
 
-      <div class="mt-6">
+      <div class="mt-8">
         <div class="relative">
           <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-neutral-300"></div>
+            <div class="w-full surface-inset" style="height: 2px;"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-2 bg-white text-neutral-500">
+            <span class="px-4 card-raised text-neutral-600 embossed-text text-sm font-medium">
               Or
             </span>
           </div>
         </div>
 
-        <div class="mt-6 text-center">
+        <div class="mt-8 text-center">
           <%= render "devise/shared/links" %>
         </div>
       </div>

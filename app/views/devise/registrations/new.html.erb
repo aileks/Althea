@@ -1,67 +1,68 @@
-<div class="md:mt-24 bg-gray-50 grid place-items-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="md:mt-24 grid place-items-center py-12 px-4 sm:px-6 lg:px-8 relative">
 
   <div class="w-full max-w-md space-y-8">
-    <h2 class="text-center underline text-3xl font-bold text-gray-900">
-    Create your account
+    <h2 class="text-center text-3xl font-bold text-primary-700 embossed-text relative">
+      <span class="relative z-10">Create your account</span>
+      <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary-400 to-accent-500 rounded-full"></div>
     </h2>
 
-    <div class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
+    <div class="card-raised py-8 px-4 sm:px-10 relative">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
         <div class="error-text mb-4">
           <%= render "devise/shared/error_messages", resource: resource %>
         </div>
 
         <div>
-          <%= f.label :username, class: "block font-medium text-gray-700" %>
-          <div class="mt-1">
+          <%= f.label :username, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <div class="relative">
             <%= f.text_field :username, placeholder: "Your username", autofocus: true, autocomplete: "username", class: "form-input w-full" %>
           </div>
         </div>
 
         <div>
-          <%= f.label :email, class: "block font-medium text-gray-700" %>
-          <div class="mt-1">
+          <%= f.label :email, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <div class="relative">
             <%= f.email_field :email, placeholder: "you@example.com", autocomplete: "email", class: "form-input w-full" %>
           </div>
         </div>
 
         <div>
-          <div class="flex justify-between items-baseline">
-            <%= f.label :password, class: "block font-medium text-gray-700" %>
+          <div class="flex justify-between items-baseline mb-2">
+            <%= f.label :password, class: "block font-medium text-neutral-700 embossed-text" %>
             <% if @minimum_password_length %>
-              <em class=" text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
+              <em class="text-neutral-500 text-sm debossed-text">(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
           </div>
-          <div class="mt-1">
+          <div class="relative">
             <%= f.password_field :password, placeholder: "••••••••", autocomplete: "new-password", class: "form-input w-full" %>
           </div>
         </div>
 
         <div>
-          <%= f.label :password_confirmation, class: "block  font-medium text-gray-700" %>
-          <div class="mt-1">
+          <%= f.label :password_confirmation, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <div class="relative">
             <%= f.password_field :password_confirmation, placeholder: "••••••••", autocomplete: "new-password", class: "form-input w-full" %>
           </div>
         </div>
 
         <div>
-          <%= f.submit "Sign up", class: "w-full flex justify-center py-2 px-4 btn-primary" %>
+          <%= f.submit "Sign up", class: "w-full flex justify-center btn-primary text-lg" %>
         </div>
       <% end %>
 
-      <div class="mt-6">
+      <div class="mt-8">
         <div class="relative">
           <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-300"></div>
+            <div class="w-full surface-inset" style="height: 2px;"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-2 bg-white text-gray-500">
+            <span class="px-4 card-raised text-neutral-600 embossed-text text-sm font-medium">
               Or
             </span>
           </div>
         </div>
 
-        <div class="mt-6 text-center">
+        <div class="mt-8 text-center">
           <%= render "devise/shared/links" %>
         </div>
       </div>

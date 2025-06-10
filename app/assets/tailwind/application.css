@@ -115,24 +115,264 @@
     --gradient-earth: linear-gradient(135deg, var(--color-secondary-500), var(--color-warning-500));
     --gradient-growth: linear-gradient(135deg, var(--color-success-400), var(--color-primary-500));
     --gradient-community: linear-gradient(135deg, var(--color-accent-400), var(--color-info-400));
+
+    /* Skeuomorphic Gradients */
+    --gradient-raised: linear-gradient(145deg, #ffffff, #e6e6e6);
+    --gradient-inset: linear-gradient(145deg, #e6e6e6, #ffffff);
+    --gradient-button: linear-gradient(145deg, var(--color-primary-400), var(--color-primary-600));
+    --gradient-button-hover: linear-gradient(
+        145deg,
+        var(--color-primary-300),
+        var(--color-primary-500)
+    );
+    --gradient-button-pressed: linear-gradient(
+        145deg,
+        var(--color-primary-600),
+        var(--color-primary-400)
+    );
+    --gradient-card: linear-gradient(145deg, #fafafa, #f0f0f0);
+    --gradient-input: linear-gradient(145deg, #f8f8f8, #ffffff);
+
+    /* Texture Overlays */
+    --texture-paper: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+
+    /* Shadow Definitions */
+    --shadow-raised:
+        0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.15);
+    --shadow-button:
+        0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    --shadow-button-pressed:
+        inset 0 2px 4px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-card:
+        0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04),
+        0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 @utility form-input {
-    @apply border border-primary-300 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent;
+    background: var(--gradient-input);
+    border: 1px solid var(--color-primary-200);
+    box-shadow: var(--shadow-inset);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--texture-paper);
+        border-radius: 0.5rem;
+        pointer-events: none;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--color-primary-500);
+        box-shadow:
+            var(--shadow-inset),
+            0 0 0 3px rgba(var(--color-primary-500), 0.1);
+        transform: translateY(-1px);
+    }
+
+    &:hover {
+        border-color: var(--color-primary-400);
+    }
 }
 
 @utility error-text {
-    @apply italic text-error-500;
+    font-style: italic;
+    color: var(--color-error-600);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+@utility card-raised {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--texture-paper);
+        opacity: 0.4;
+        pointer-events: none;
+    }
+}
+
+@utility surface-inset {
+    background: var(--gradient-inset);
+    box-shadow: var(--shadow-inset);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-neutral-200);
+}
+
+@utility glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+@utility embossed-text {
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@utility debossed-text {
+    text-shadow:
+        0 -1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 2px rgba(0, 0, 0, 0.3);
+    color: var(--color-neutral-600);
 }
 
 @utility link-primary {
-    @apply font-medium hover:text-secondary-500 focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:border-transparent cursor-pointer duration-200;
+    font-weight: 500;
+    color: var(--color-secondary-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    text-decoration: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-secondary-500), var(--color-accent-500));
+        transition: width 0.3s ease;
+        border-radius: 1px;
+    }
+
+    &:hover {
+        color: var(--color-secondary-500);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+        &::after {
+            width: 100%;
+        }
+    }
+
+    &:focus {
+        outline: none;
+        color: var(--color-secondary-600);
+        background: rgba(var(--color-secondary-100), 0.5);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        margin: -0.25rem -0.5rem;
+    }
 }
 
 @utility btn-primary {
-    @apply bg-primary-600 text-white px-2 py-1 rounded hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent cursor-pointer duration-200;
+    background: var(--gradient-button);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: var(--shadow-button);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    &:hover {
+        background: var(--gradient-button-hover);
+        transform: translateY(-2px);
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.15),
+            0 3px 6px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+        &::before {
+            left: 100%;
+        }
+    }
+
+    &:active {
+        background: var(--gradient-button-pressed);
+        transform: translateY(0);
+        box-shadow: var(--shadow-button-pressed);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow:
+            var(--shadow-button),
+            0 0 0 3px rgba(var(--color-primary-500), 0.3);
+    }
 }
 
 @utility btn-destructive {
-    @apply bg-error-600 text-white px-2 py-1 rounded hover:bg-error-500 focus:outline-none focus:ring-2 focus:ring-error-500 focus:border-transparent cursor-pointer duration-200;
+    background: linear-gradient(145deg, var(--color-error-500), var(--color-error-700));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow:
+        0 4px 8px rgba(220, 38, 38, 0.25),
+        0 2px 4px rgba(220, 38, 38, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+        background: linear-gradient(145deg, var(--color-error-400), var(--color-error-600));
+        transform: translateY(-2px);
+        box-shadow:
+            0 6px 12px rgba(220, 38, 38, 0.3),
+            0 3px 6px rgba(220, 38, 38, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    &:active {
+        background: linear-gradient(145deg, var(--color-error-700), var(--color-error-500));
+        transform: translateY(0);
+        box-shadow:
+            inset 0 2px 4px rgba(0, 0, 0, 0.2),
+            inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow:
+            0 4px 8px rgba(220, 38, 38, 0.25),
+            0 2px 4px rgba(220, 38, 38, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2),
+            0 0 0 3px rgba(var(--color-error-500), 0.3);
+    }
 }
