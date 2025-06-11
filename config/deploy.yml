@@ -84,7 +84,6 @@ builder:
   # secrets:
   #   - GITHUB_TOKEN
   #   - RAILS_MASTER_KEY
-
 # Use a different ssh user than root
 # ssh:
 #   user: user
@@ -93,12 +92,16 @@ builder:
 accessories:
   postgres:
     image: postgres:15
-    host: 45.55.98.183
+    # host: 45.55.98.183
+    roles:
+      - web
     env:
       clear:
-        POSTGRES_DB: althea_production
-        POSTGRES_USER: althea
+        POSTGRES_DB: "althea_production"
+        POSTGRES_USER: "althea"
       secret:
         - POSTGRES_PASSWORD
+    files:
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
     directories:
       - data:/var/lib/postgresql/data
