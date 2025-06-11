@@ -81,8 +81,6 @@ production:
   primary: &primary_production
     <<: *default
     database: althea_production
-    username: althea
-    host: <%= ENV["DB_HOST"] %>
     password: <%= ENV["POSTGRES_PASSWORD"] %>
   cache:
     <<: *primary_production
