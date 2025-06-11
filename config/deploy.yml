@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: app.example.com
+  host: 143.198.246.5
 
 # Credentials for your image host.
 registry:
@@ -93,7 +93,6 @@ accessories:
   postgres:
     image: postgres:16
     host: 143.198.246.5
-    port: "127.0.0.1:5432:5432"
     env:
       clear:
         POSTGRES_USER: postgres
