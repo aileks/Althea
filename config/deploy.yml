@@ -7,7 +7,7 @@ image: aileks/althea
 # Deploy to these servers.
 servers:
   web:
-    - 143.198.246.5
+    - 45.55.98.183
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: 143.198.246.5
+  host: 45.55.98.183
 
 # Credentials for your image host.
 registry:
@@ -86,14 +86,14 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-ssh:
-  user: user
+# ssh:
+#   user: user
 
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
     image: postgres:16
-    host: 143.198.246.5
+    host: 45.55.98.183
     port: 5432
     env:
       clear:
