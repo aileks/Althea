@@ -97,6 +97,9 @@ accessories:
     host: 45.55.98.183
     port: "127.0.0.1:5432:5432"
     env:
+      clear:
+        POSTGRES_DB: althea_production
+        POSTGRES_USER: root
       secret:
         - POSTGRES_PASSWORD
     directories:
