@@ -90,16 +90,19 @@ ssh:
 
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
-  db:
+  postgres:
     image: postgres:16
     host: 143.198.246.5
-    port: 5432
+    port: "127.0.0.1:5432:5432"
     env:
-      secret:
-        - POSTGRES_PASSWORD
       clear:
         POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
         POSTGRES_DB: althea_production
-    volumes:
-      - althea_postgres_data:/var/lib/postgresql/data
+        DB_HOST: 127.0.0.1
+        DB_PORT: 5432
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - data:/var/lib/postgresql/data
+    files:
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
