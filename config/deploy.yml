@@ -105,4 +105,4 @@ accessories:
     directories:
       - data:/var/lib/postgresql/data
     files:
-      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+      - db/production_setup.sql:/docker-entrypoint-initdb.d/setup.sql
