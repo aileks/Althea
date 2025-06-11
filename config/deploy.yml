@@ -37,6 +37,9 @@ env:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
   clear:
+    DB_HOST: althea-postgres
+    POSTGRES_USER: althea
+    POSTGRES_DB: althea_production
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
     SOLID_QUEUE_IN_PUMA: true
@@ -46,10 +49,6 @@ env:
 
     # Set number of cores available to the application on each server (default: 1).
     # WEB_CONCURRENCY: 2
-
-    # Match this to any external database server to configure Active Record correctly
-    # Use althea-db for a db accessory server on same machine via local kamal docker network.
-    DB_HOST: althea-db
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
@@ -92,17 +91,14 @@ builder:
 
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
-  db:
-    image: postgres:16
+  postgres:
+    image: postgres:15
     host: 45.55.98.183
-    port: "127.0.0.1:5432:5432"
     env:
       clear:
         POSTGRES_DB: althea_production
-        POSTGRES_USER: root
+        POSTGRES_USER: althea
       secret:
         - POSTGRES_PASSWORD
     directories:
       - data:/var/lib/postgresql/data
-    files:
-      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
