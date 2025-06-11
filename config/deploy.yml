@@ -84,21 +84,22 @@ builder:
   # secrets:
   #   - GITHUB_TOKEN
   #   - RAILS_MASTER_KEY
+
 # Use a different ssh user than root
 ssh:
   user: user
 
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
-  postgres:
+  db:
     image: postgres:16
     host: 143.198.246.5
+    port: 5432
     env:
       clear:
-        POSTGRES_USER: postgres
+        POSTGRES_USER: althea
         POSTGRES_DB: althea_production
         DB_HOST: 127.0.0.1
-        DB_PORT: 5432
       secret:
         - POSTGRES_PASSWORD
     directories:
