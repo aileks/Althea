@@ -49,8 +49,6 @@ env:
     # Match this to any external database server to configure Active Record correctly
     # Use althea-db for a db accessory server on same machine via local kamal docker network.
     DB_HOST: althea-db
-    DB_PORT: 5432
-    DB_USER: postgres
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
@@ -101,6 +99,7 @@ accessories:
         - POSTGRES_PASSWORD
       clear:
         POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
         POSTGRES_DB: althea_production
     volumes:
       - althea_postgres_data:/var/lib/postgresql/data
