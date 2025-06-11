@@ -19,7 +19,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: althea_development
@@ -82,8 +81,10 @@ production:
   primary: &primary_production
     <<: *default
     database: althea_production
-    username: althea
-    password: <%= ENV["ALTHEA_DATABASE_PASSWORD"] %>
+    host: <%= ENV.fetch("DB_HOST") %>
+    port: <%= ENV.fetch("DB_PORT", 5432) %>
+    username: <%= ENV.fetch("DB_USER") %>
+    password: <%= ENV["DB_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: althea_production_cache
