@@ -1,22 +1,25 @@
-<div class="relative">
+<div class="mt-14">
   <!-- Hero Section -->
-  <section class="py-20 px-4 text-center relative">
+  <section class="py-12 px-4 text-center">
     <div class="container mx-auto max-w-4xl">
-      <h1 class="text-6xl font-bold text-primary-700 embossed-text mb-6">
-        Start Your Vegan Journey
+      <h2 class="text-4xl font-bold text-bubble mt-8 mb-4">
+        🌱 Start Your Vegan Journey
       </h1>
-      <p class="text-xl text-neutral-600 embossed-text mb-8 max-w-2xl mx-auto">
-        Join thousands taking on vegan challenges, from 7-day trials to 30-day transformations.
-        Get daily support, track your impact, and connect with a thriving community.
-      </p>
-      <div class="flex gap-4 justify-center flex-wrap">
+
+      <% unless user_signed_in? %>
+        <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          Join thousands taking on vegan challenges. Get daily support, track your impact, and connect with a thriving community.
+        </p>
+      <% end %>
+
+      <div class="flex gap-6 justify-center flex-wrap mb-8">
         <% unless user_signed_in? %>
-          <%= link_to "Start a Challenge", new_user_registration_path, class: "btn-primary text-lg px-8 py-4" %>
-          <%= link_to "Learn More", "#features", class: "link-primary text-lg px-4 py-2" %>
+          <%= link_to "Start Your Challenge 🚀", new_user_registration_path, class: "btn-bubble text-lg" %>
         <% else %>
-          <div class="card-raised p-6 text-center">
-            <p class="text-lg embossed-text text-neutral-700">Welcome back, <%= current_user.username %>!</p>
-            <p class="text-neutral-600 mt-2">Ready to continue your vegan journey?</p>
+          <div class="bubble-card p-8 text-center mt-8 max-w-md">
+            <h3 class="text-2xl font-bold text-bubble mb-2">Welcome back, <%= current_user.username %>! 👋</h3>
+
+            <p class="text-neutral-600">Ready to continue your vegan journey?</p>
           </div>
         <% end %>
       </div>
@@ -24,60 +27,42 @@
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="py-16 px-4">
+  <section class="py-8 px-4">
     <div class="container mx-auto max-w-6xl">
-      <h2 class="text-4xl font-bold text-center text-primary-700 embossed-text mb-12">
-        Everything You Need for Vegan Success
+      <h2 class="text-3xl font-bold text-center text-bubble mb-8">
+        Why Choose Althea?
       </h2>
 
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Feature Card 1 -->
-        <div class="card-raised p-8 text-center space-y-4">
-          <div class="w-16 h-16 mx-auto surface-inset rounded-full flex items-center justify-center">
-            <div class="w-8 h-8 bg-gradient-to-br from-success-400 to-primary-500 rounded-full"></div>
+        <div class="bubble-card p-8 text-center space-y-6">
+          <div class="icon-bubble">
+            <span class="text-2xl">💚</span>
           </div>
-          <h3 class="text-xl font-bold text-primary-600 embossed-text">Daily Support & Guidance</h3>
-          <p class="text-neutral-600">Get daily tips, recipes, and motivational messages to keep you on track throughout your vegan challenge.</p>
+
+          <h3 class="text-xl font-bold text-bubble">Daily Support</h3>
+          <p class="text-neutral-600 leading-relaxed">Get daily tips, recipes, and motivation to keep you inspired throughout your challenge.</p>
         </div>
 
         <!-- Feature Card 2 -->
-        <div class="card-raised p-8 text-center space-y-4">
-          <div class="w-16 h-16 mx-auto surface-inset rounded-full flex items-center justify-center">
-            <div class="w-8 h-8 bg-gradient-to-br from-accent-400 to-info-400 rounded-full"></div>
+        <div class="bubble-card p-8 text-center space-y-6">
+          <div class="icon-bubble">
+            <span class="text-2xl">📊</span>
           </div>
-          <h3 class="text-xl font-bold text-primary-600 embossed-text">Track Your Impact</h3>
-          <p class="text-neutral-600">See your progress with animals saved, CO2 reduced, and days completed. Visualize the difference you're making.</p>
+
+          <h3 class="text-xl font-bold text-bubble">Track Your Impact</h3>
+          <p class="text-neutral-600 leading-relaxed">Visualize animals saved, CO2 reduced, and celebrate every milestone on your journey.</p>
         </div>
 
         <!-- Feature Card 3 -->
-        <div class="card-raised p-8 text-center space-y-4">
-          <div class="w-16 h-16 mx-auto surface-inset rounded-full flex items-center justify-center">
-            <div class="w-8 h-8 bg-gradient-to-br from-warning-400 to-secondary-500 rounded-full"></div>
+        <div class="bubble-card p-8 text-center space-y-6">
+          <div class="icon-bubble">
+            <span class="text-2xl">🤝</span>
           </div>
-          <h3 class="text-xl font-bold text-primary-600 embossed-text">Community Support</h3>
-          <p class="text-neutral-600">Connect with fellow challengers, share experiences, get advice, and celebrate milestones together.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Call to Action -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto max-w-4xl text-center">
-      <div class="card-raised p-12 bg-gradient-to-br from-primary-50 to-accent-50">
-        <h2 class="text-3xl font-bold text-primary-700 embossed-text mb-4">
-          Ready to Make a Difference?
-        </h2>
-        <p class="text-lg text-neutral-600 mb-8 max-w-2xl mx-auto">
-          Join thousands who've discovered how easy and rewarding a vegan lifestyle can be.
-          Start with a 7-day challenge and see the impact you can make.
-        </p>
-        <% unless user_signed_in? %>
-          <div class="flex gap-4 justify-center flex-wrap">
-            <%= link_to "Start Your Challenge", new_user_registration_path, class: "btn-primary text-lg px-8 py-4" %>
-            <%= link_to "Sign In", new_user_session_path, class: "link-primary text-lg px-4 py-2" %>
-          </div>
-        <% end %>
+          <h3 class="text-xl font-bold text-bubble">Community</h3>
+          <p class="text-neutral-600 leading-relaxed">Connect with like-minded people, share experiences, and support each other.</p>
+        </div>
       </div>
     </div>
   </section>

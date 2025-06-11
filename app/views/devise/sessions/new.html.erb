@@ -1,26 +1,26 @@
-<div class="md:mt-24 grid place-items-center py-12 px-4 sm:px-6 lg:px-8 relative">
+<div class="md:mt-12 grid place-items-center py-12 px-4 sm:px-6 lg:px-8 relative">
 
   <div class="w-full max-w-md space-y-8">
-    <h2 class="text-center text-3xl font-bold text-primary-700 embossed-text relative">
-      <span class="relative z-10">Welcome Back</span>
-      <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary-400 to-accent-500 rounded-full"></div>
+    <h2 class="text-center text-3xl font-bold text-bubble mb-2">
+      Welcome Back 👋
     </h2>
+    <p class="text-center text-neutral-600 mb-8">Sign in to continue your journey</p>
 
-    <div class="card-raised py-8 px-4 sm:px-10 relative">
+    <div class="bubble-card py-8 px-4 sm:px-10 relative">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
         <div class="error-text mb-4">
           <%= render "devise/shared/error_messages", resource: resource %>
         </div>
 
         <div>
-          <%= f.label :email, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <%= f.label :email, class: "block font-semibold text-neutral-700 mb-2" %>
           <div class="relative">
             <%= f.email_field :email, placeholder: "you@example.com", autofocus: true, autocomplete: "email", class: "form-input w-full" %>
           </div>
         </div>
 
         <div>
-          <%= f.label :password, class: "block font-medium text-neutral-700 embossed-text mb-2" %>
+          <%= f.label :password, class: "block font-semibold text-neutral-700 mb-2" %>
           <div class="relative">
             <%= f.password_field :password, placeholder: "••••••••", autocomplete: "current-password", class: "form-input w-full" %>
           </div>
@@ -29,22 +29,22 @@
         <% if devise_mapping.rememberable? %>
           <div class="flex items-center">
             <%= f.check_box :remember_me, class: "h-4 w-4 text-primary-600 focus:ring-primary-500 border-neutral-300 rounded" %>
-            <%= f.label :remember_me, class: "ml-2 block text-sm text-neutral-700 embossed-text" %>
+            <%= f.label :remember_me, class: "ml-2 block text-sm text-neutral-700 font-medium" %>
           </div>
         <% end %>
 
         <div>
-          <%= f.submit "Log in", class: "w-full flex justify-center btn-primary text-lg" %>
+          <%= f.submit "Log in", class: "w-full btn-bubble text-lg" %>
         </div>
       <% end %>
 
       <div class="mt-8">
         <div class="relative">
           <div class="absolute inset-0 flex items-center">
-            <div class="w-full surface-inset" style="height: 2px;"></div>
+            <div class="w-full h-px bg-neutral-200"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-4 card-raised text-neutral-600 embossed-text text-sm font-medium">
+            <span class="px-4 bg-white text-neutral-600 text-sm font-medium">
               Or
             </span>
           </div>
