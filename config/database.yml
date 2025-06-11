@@ -81,10 +81,10 @@ production:
   primary: &primary_production
     <<: *default
     database: althea_production
-    host: <%= ENV.fetch("DB_HOST") %>
+    host: <%= ENV.fetch("DB_HOST", "localhost") %>
     port: <%= ENV.fetch("DB_PORT", 5432) %>
-    username: <%= ENV.fetch("DB_USER") %>
-    password: <%= ENV["DB_PASSWORD"] %>
+    username: <%= ENV.fetch("DB_USER", "dummy") %>
+    password: <%= ENV.fetch("DB_PASSWORD", "") %>
   cache:
     <<: *primary_production
     database: althea_production_cache
