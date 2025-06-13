@@ -1,32 +1,38 @@
-<%= form_with(model: post, class: "contents") do |form| %>
+<%= form_with(model: post, class: "space-y-6") do |form| %>
   <% if post.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <div
+      class="
+        bg-error-100 border-l-4 border-error-500 text-error-700 p-4 rounded-lg
+      "
+      role="alert"
+    >
+      <h2 class="font-bold">Could not save post:</h2>
 
-      <ul class="list-disc ml-6">
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+      <ul class="mt-3 list-disc list-inside space-y-1">
+        <% post.errors.full_messages.each do |message| %>
+          <li class="error-text"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:title].none?, "border-red-400 focus:outline-red-600": post.errors[:title].any?}] %>
+  <div>
+    <%= form.label :title, class: "block text-xl font-medium leading-6 text-primary-900" %>
+    <div class="mt-2">
+      <%= form.text_field :title, class: "form-input w-full" %>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :content %>
-    <%= form.textarea :content, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:content].none?, "border-red-400 focus:outline-red-600": post.errors[:content].any?}] %>
+  <div>
+    <%= form.label :content,
+               class: "block text-xl font-medium leading-6 text-primary-900" %>
+    <div class="mt-2">
+      <%= form.rich_text_area :content, class: "form-input" %>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:user_id].none?, "border-red-400 focus:outline-red-600": post.errors[:user_id].any?}] %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex items-center gap-4">
+    <%= form.submit "Save Post", class: "btn-bubble" %>
+    <%= link_to "Cancel", posts_path, class: "link-bubble" %>
   </div>
 <% end %>
