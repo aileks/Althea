@@ -2,7 +2,11 @@
 @import "../stylesheets/actiontext.css";
 
 @theme {
-  --font-sans: "Funnel Display", "Inter", "system-ui", sans-serif;
+  --font-sans:
+    "Funnel Display", "Segoe UI", "Helvetica Neue", "system-ui", Arial,
+    sans-serif;
+  --font-mono:
+    "PT Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   /* Forest Green */
   --color-primary-50: oklch(97% 0.02 142);
@@ -117,27 +121,12 @@
     0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.15);
 }
 
-.trix-content a {
-  color: var(--color-info-600);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.trix-content a:hover,
-.trix-content a:visited:hover {
-  color: var(--color-info-700);
-}
-
-trix-content a:visited {
-  color: var(--color-accent-700);
-}
-
 @utility form-input {
   background: white;
   border: 2px solid var(--color-primary-200);
   padding: 1rem 1.25rem;
   border-radius: 1.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   font-size: 1rem;
 
   &:focus {
@@ -161,7 +150,7 @@ trix-content a:visited {
   box-shadow: var(--bubble-shadow);
   border-radius: 2rem;
   border: 1px solid var(--color-neutral-100);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   &:hover {
     box-shadow: var(--bubble-shadow-hover);
@@ -294,7 +283,7 @@ trix-content a:visited {
   justify-content: center;
   background: var(--color-primary-100);
   margin: 0 auto;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   &:hover {
     background: var(--color-primary-200);

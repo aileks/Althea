@@ -14,11 +14,15 @@
     <% else %>
       <div class="bubble-card-flat p-6 text-center">
         <p class="text-neutral-600">
-          <%= link_to "Log in", new_user_session_path, class: "font-bold text-primary-600" %>
+          <%= link_to "Log in",
+          new_user_session_path,
+          class:
+            "text-secondary-600 cursor-pointer transition-all hover:text-secondary-700 hover:underline duration-200" %>
           or
           <%= link_to "sign up",
           new_user_registration_path,
-          class: "font-bold text-primary-600" %>
+          class:
+            "text-secondary-600 cursor-pointer transition-all hover:text-secondary-700 hover:underline duration-200" %>
           to leave a comment.
         </p>
       </div>

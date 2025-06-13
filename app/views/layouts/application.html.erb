@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=PT+Mono&display=swap"
       rel="stylesheet"
     >
 
@@ -22,41 +22,51 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="font-sans antialiased bg-gradient-to-br from-primary-50 to-accent-50">
+  <body
+    class="
+      font-sans antialiased bg-gradient-to-br from-primary-50 to-accent-50
+    "
+  >
     <header class="glass-bubble mx-4 mt-4">
       <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <div>
-           <%= link_to "🌱 Althea", root_path, class: "text-2xl font-bold text-bubble" %>
+          <%= link_to "🌱 Althea", root_path, class: "text-2xl font-bold text-bubble" %>
         </div>
 
         <div class="flex items-center gap-4">
-            <% if user_signed_in? %>
-              <span class="text-neutral-600 font-medium">Welcome, <%= current_user.username %></span>
+          <% if user_signed_in? %>
+            <span class="text-neutral-600 font-medium">Welcome,
+              <%= current_user.username %></span>
 
-              <%= link_to "Edit Profile", edit_user_registration_path, class: "link-bubble" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "link-bubble" %>
 
-              <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn-bubble-danger" %>
-            <% else %>
-              <%= link_to "Log In", new_user_session_path, class: "link-bubble" %>
+            <%= button_to "Log Out",
+            destroy_user_session_path,
+            method: :delete,
+            class: "btn-bubble-danger" %>
+          <% else %>
+            <%= link_to "Log In", new_user_session_path, class: "link-bubble" %>
 
-              <%= link_to "Sign Up", new_user_registration_path, class: "btn-bubble" %>
-            <% end %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn-bubble" %>
+          <% end %>
         </div>
       </nav>
     </header>
 
     <div class="fixed top-20 right-4 z-50 space-y-2">
-        <% if notice %>
-          <div class="alert-bubble alert-success" role="alert">
-            <p class="text-success-700 font-semibold">✅ <%= notice %></p>
-          </div>
-        <% end %>
+      <% if notice %>
+        <div class="alert-bubble alert-success" role="alert">
+          <p class="text-success-700 font-semibold">✅
+            <%= notice %></p>
+        </div>
+      <% end %>
 
-        <% if alert %>
-            <div class="alert-bubble alert-error" role="alert">
-                <p class="text-error-700 font-semibold">⚠️ <%= alert %></p>
-            </div>
-        <% end %>
+      <% if alert %>
+        <div class="alert-bubble alert-error" role="alert">
+          <p class="text-error-700 font-semibold">⚠️
+            <%= alert %></p>
+        </div>
+      <% end %>
     </div>
 
     <main>
