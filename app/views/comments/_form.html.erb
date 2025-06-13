@@ -1,0 +1,10 @@
+<%= form_with(model: [ post, comment ], class: "bubble-card p-6") do |form| %>
+  <div class="field">
+    <%= form.label :body, "Add a comment", class: "text-bubble block mb-2" %>
+    <%= form.rich_text_area :body %>
+  </div>
+
+  <div class="actions mt-4 text-right">
+    <%= form.submit "Post Comment", class: "btn-bubble" %>
+  </div>
+<% end %>

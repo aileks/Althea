@@ -1,0 +1,27 @@
+<div id="<%= dom_id comment %>" class="bubble-card-flat p-4 mb-4">
+  <div class="flex items-start justify-between">
+    <div class="text-sm">
+      <span class="font-bold text-primary-700"><%= comment.user.username %></span>
+
+      <span class="text-neutral-500">&bull;
+        <%= time_ago_in_words(comment.created_at) %>
+        ago</span>
+    </div>
+
+    <% if user_signed_in? && current_user == comment.user %>
+      <%= button_to "Delete",
+      [comment.post, comment],
+      method: :delete,
+      class: "btn-bubble-danger !py-1 !px-3 !text-xs",
+      form: {
+        data: {
+          turbo_confirm: "Are you sure?",
+        },
+      } %>
+    <% end %>
+  </div>
+
+  <div class="mt-2">
+    <%= comment.body %>
+  </div>
+</div>
